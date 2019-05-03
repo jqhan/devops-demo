@@ -43,4 +43,8 @@ public class ThreeLittlePigs implements Tale {
         }
         fairyTale.tell();
     }
+
+    public int add(int x, int y) {
+        return x + y;
+    }
 }
