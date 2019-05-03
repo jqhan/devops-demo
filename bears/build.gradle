@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    api project(':tale')
+    
+    implementation project(':formula')
+    implementation project(':actors')
+
+    testImplementation 'junit:junit:4.12'
+}
+
+ext.moduleName = 'org.gradle.fairy.tale.bears'

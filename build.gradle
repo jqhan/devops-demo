@@ -1,22 +1,47 @@
-plugins {
-    id "org.gradle.guides.tutorial" version "0.14.0"
-}
 
-guide {
-    repoPath = 'gradle-guides/building-java-9-modules'
-    mainAuthor = 'Pepper Lebeck-Jobe'
-}
+apply plugin: 'idea'
+subprojects {
+    afterEvaluate {
+        repositories {
+            jcenter()
+        }
 
-asciidoctor {
-    inputs.dir files('src/0-original', 'src/1-single-module', 'src/2-all-modules', 'src/3-application', 'src/4-plugin')
-    attributes originaldir: file('src/0-original')
-    attributes singledir: file('src/1-single-module')
-    attributes alldir: file('src/2-all-modules')
-    attributes appdir: file('src/3-application')
-    attributes plugindir: file('src/4-plugin')
-}
+        compileJava {
+            doFirst {
+                options.compilerArgs = [
+                    '--module-path', classpath.asPath,
+                ]
+                classpath = files()
+            }
+        }
 
-// Add in any generation steps.
-gradleRunner {
+        compileTestJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                    '--module-path', classpath.asPath,
+                    '--add-modules', 'junit',
+                    '--add-reads', "$moduleName=junit",
+                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+                ]
+                classpath = files()
+            }
+        }
 
+        test {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                jvmArgs = [
+                    '--module-path', classpath.asPath,
+                    '--add-modules', 'ALL-MODULE-PATH',
+                    '--add-reads', "$moduleName=junit",
+                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir).asPath,
+                ]
+                classpath = files()
+            }
+            afterTest { desc, result ->
+                logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+            }
+        }
+    }
 }

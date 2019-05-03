@@ -2,6 +2,8 @@
 .gradle
 /build/
 
+**/build/**
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -104,3 +106,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+.idea
