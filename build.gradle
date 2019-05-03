@@ -1,6 +1,16 @@
 
-apply plugin: 'idea'
+plugins {
+    id "com.github.spotbugs" version "1.7.1" // run with ./gradlew spotbugsMain or ./gradlew check
+}
+
+spotbugs {
+    effort = "max"
+}
+
 subprojects {
+   
+    apply plugin: 'com.github.spotbugs'
+
     afterEvaluate {
         repositories {
             jcenter()

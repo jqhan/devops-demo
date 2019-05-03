@@ -51,4 +51,9 @@ public class GoldilocksAndTheThreeBears implements Tale {
         }
         fairyTale.tell();
     }
+
+    // SpotBugs NP_BOOLEAN_RETURN_NULL violation
+    public Boolean returnNull() {
+        return null;
+    }
 }
