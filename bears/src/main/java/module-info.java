@@ -5,4 +5,5 @@ module org.gradle.fairy.tale.bears {
 
     provides org.gradle.fairy.tale.Tale
         with org.gradle.fairy.tale.bears.GoldilocksAndTheThreeBears;
+    exports org.gradle.fairy.tale.bears;
 }
