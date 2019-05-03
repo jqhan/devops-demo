@@ -4,9 +4,16 @@ plugins {
 
 dependencies {
     api project(':tale')
-    
+    testImplementation 'junit:junit:4.12'
+
     implementation project(':formula')
     implementation project(':actors')
+}
+
+test {
+
+}
+compileTestJava {
 }
 
 ext.moduleName = 'org.gradle.fairy.tale.pigs'
