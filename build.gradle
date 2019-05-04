@@ -59,7 +59,6 @@ pmd {
     ]
 }
 
-
 subprojects {
 
     apply plugin: 'com.github.spotbugs'

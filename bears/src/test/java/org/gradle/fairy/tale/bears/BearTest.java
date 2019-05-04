@@ -27,4 +27,11 @@ public class BearTest {
         Tale tale = new GoldilocksAndTheThreeBears();
         tale.tell();
     }
+
+    @Test
+    public void bearTest3() {
+        Tale tale = new GoldilocksAndTheThreeBears();
+        Tale tale2 = tale;
+        tale2.tell();
+    }
 }
