@@ -14,9 +14,16 @@ buildscript {
 
 plugins {
     id "com.github.spotbugs" version "1.7.1" // run with ./gradlew spotbugsMain or ./gradlew check
-    id "pmd"
+    id "pmd" // ./gradlew pmdMain
+    id 'checkstyle' // ./gradlew checkstyleMain
 }
 
+
+tasks.withType(Checkstyle) {
+    reports {
+        html.destination rootProject.file("build/reports/checkstyle.html")
+    }
+}
 spotbugs {
     effort = "max"
 }

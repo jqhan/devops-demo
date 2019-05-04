@@ -3,6 +3,9 @@ plugins {
     id 'application'
 }
 apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+
+
 pmd {
     rulePriority = 2
     ignoreFailures = true
