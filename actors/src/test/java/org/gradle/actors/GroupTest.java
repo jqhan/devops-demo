@@ -18,7 +18,7 @@ public class GroupTest {
 
     @Test
     public void nameMatches() {
-        assertEquals(NOBODY, EMPTY.name());
+        assertEquals(NOBODY, EMPTY.getName());
     }
 
     @Test

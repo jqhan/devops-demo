@@ -14,11 +14,42 @@ buildscript {
 
 plugins {
     id "com.github.spotbugs" version "1.7.1" // run with ./gradlew spotbugsMain or ./gradlew check
-
+    id "pmd"
 }
 
 spotbugs {
     effort = "max"
+}
+pmd {
+    rulePriority = 2
+    ignoreFailures = true
+    ruleSets = [
+            /* rules
+            "braces",
+            "basic",
+            "naming",
+            "android",
+            "clone",
+            "codesize",
+            "controversial",
+            "design",
+            "finalizers",
+            "imports",
+            "j2ee",
+            "javabeans",
+            "junit",
+            "logging-jakarta-commons",
+            "logging-java",
+            "migrating",
+            "optimizations",
+            "strictexception",
+            "strings",
+            "sunsecure",
+            "typeresolution",
+            "unusedcode"
+            */
+
+    ]
 }
 
 

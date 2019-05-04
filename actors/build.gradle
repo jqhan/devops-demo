@@ -1,7 +1,11 @@
 plugins {
     id 'java-library'
 }
-
+apply plugin: 'pmd'
+pmd {
+    rulePriority = 2
+    ignoreFailures = true
+}
 dependencies {
     implementation 'com.google.guava:guava:22.0'
 

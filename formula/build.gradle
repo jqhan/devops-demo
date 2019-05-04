@@ -1,7 +1,12 @@
 plugins {
     id 'java-library'
 }
+apply plugin: 'pmd'
 
+pmd {
+    rulePriority = 5
+    ignoreFailures = true
+}
 dependencies {
     api project(':tale')
     api project(':actors')

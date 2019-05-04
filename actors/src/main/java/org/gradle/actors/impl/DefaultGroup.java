@@ -12,7 +12,7 @@ import java.util.Iterator;
  */
 public class DefaultGroup implements Group {
     private final String name;
-    private final ImmutableSet<Actor> actors;
+    private final transient ImmutableSet<Actor> actors;
 
     public DefaultGroup(String name, ImmutableSet<Actor> actors) {
         super();
@@ -21,13 +21,13 @@ public class DefaultGroup implements Group {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return name;
     }
 
     @Override
     public String toString() {
-        return String.format("the %d %s", size(), name());
+        return String.format("the %d %s", size(), getName());
     }
 
     @Override

@@ -1,5 +1,9 @@
 plugins {
     id 'java-library'
 }
-
+apply plugin: 'pmd'
+pmd {
+    rulePriority = 2
+    ignoreFailures = true
+}
 ext.moduleName = 'org.gradle.fairy.tale'

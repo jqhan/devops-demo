@@ -5,7 +5,7 @@ import org.gradle.fairy.tale.Tale;
 import java.util.ServiceLoader;
 
 class StoryTeller {
-
+    @SuppressWarnings("PMD.DataflowAnomalyAnalysis")
     public static void main(String[] args) {
         ServiceLoader<Tale> loader = ServiceLoader.load(Tale.class);
         if (!loader.iterator().hasNext()) {

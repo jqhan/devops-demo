@@ -8,5 +8,5 @@ public interface Actor {
      * Returns the name of the {@link Actor}
      *
      */
-    String name();
+    String getName();
 }

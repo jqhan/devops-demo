@@ -10,7 +10,7 @@ public class ActorTest {
 
     @Test
     public void nameMatches() {
-        assertEquals(NAME, SEAN.name());
+        assertEquals(NAME, SEAN.getName());
     }
 
     @Test

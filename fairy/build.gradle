@@ -2,7 +2,11 @@ plugins {
     id 'java'
     id 'application'
 }
-
+apply plugin: 'pmd'
+pmd {
+    rulePriority = 2
+    ignoreFailures = true
+}
 import java.util.regex.Matcher;
 
 dependencies {

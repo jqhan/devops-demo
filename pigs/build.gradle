@@ -1,7 +1,11 @@
 plugins {
     id 'java-library'
 }
-
+apply plugin: 'pmd'
+pmd {
+    rulePriority = 2
+    ignoreFailures = true
+}
 dependencies {
     api project(':tale')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'

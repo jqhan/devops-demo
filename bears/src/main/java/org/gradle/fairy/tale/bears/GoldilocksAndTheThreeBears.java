@@ -9,6 +9,14 @@ import org.gradle.fairy.tale.formula.FairyTale;
  * The classic tale of "Goldilocks and the Three Bears"
  */
 public class GoldilocksAndTheThreeBears implements Tale {
+    private Tale getFairyTale() {
+        return fairyTale;
+    }
+
+    private void setFairyTale(Tale fairyTale) {
+        this.fairyTale = fairyTale;
+    }
+
     private Tale fairyTale;
 
     @Override
