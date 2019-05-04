@@ -1,12 +1,32 @@
-#!/bin/sh
+#!/bin/bash
 
 # stash any unstaged changes
 git stash -q --keep-index
 
-./gradlew test
-./gradlew spotbugsMain
-./gradlew pmdMain
+all_modules=($(./gradlew projects | grep -oh "':.*" | tr -d \'\:))
+touched_added_files=($(git diff --name-only --cached))
+touched_modules=()
 
+for path in ${touched_added_files[@]}; do
+  splitPath=(${path//\// }) # Splits on /
+  module=${splitPath[0]}
+  if [[ " ${all_modules[@]} " =~ " ${module} " ]]; then 
+    # if module exists in all_modules
+    touched_modules+=(${module})
+  fi
+done
+
+# Remove duplicates
+touched_modules=($(for v in "${touched_modules[@]}"; do echo "$v"; done | sort | uniq | xargs))
+
+for touched_module in ${touched_modules[@]}; do
+  echo "--------------------------------------"
+  echo "Running SpotBugs on module: ${touched_module}"
+  ./gradlew ${touched_module}:spotbugsMain
+  echo "--------------------------------------"
+  echo "Running PMD on module: ${touched_module}"
+  ./gradlew ${touched_module}:pmdMain
+done
 
 # store the last exit code in a variable
 RESULT=$?
