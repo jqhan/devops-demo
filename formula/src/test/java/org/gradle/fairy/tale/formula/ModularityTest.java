@@ -2,24 +2,25 @@ package org.gradle.fairy.tale.formula;
 
 import org.gradle.actors.Actor;
 import org.gradle.actors.Imagination;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Tests the visibility of objects to the formula module.
  */
 @SuppressWarnings("unchecked")
 public class ModularityTest {
-    @Test
+    @org.junit.jupiter.api.Test
     public void canReachActor() {
         Actor actor = Imagination.createActor("Sean Connery");
         assertEquals("Sean Connery", actor.toString());
     }
 
     @Test
-    @Ignore("Java 9 modularity even stops reflection.")
+    @Disabled("Java 9 modularity even stops reflection.")
     public void canDynamicallyReachDefaultActor() throws Exception {
         Class clazz = ModularityTest
             .class.getClassLoader()

@@ -1,15 +1,40 @@
 
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    configurations.maybeCreate("pitest")
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.0'
+        pitest 'org.pitest:pitest-junit5-plugin:0.8'
+    }
+}
+
 plugins {
     id "com.github.spotbugs" version "1.7.1" // run with ./gradlew spotbugsMain or ./gradlew check
+
 }
 
 spotbugs {
     effort = "max"
 }
 
+
 subprojects {
-   
+
     apply plugin: 'com.github.spotbugs'
+    apply plugin: "info.solidsoft.pitest"
+
+    pitest {
+        testPlugin = "junit5"
+        targetClasses = ['org.gradle.*']  //by default "${project.group}.*"
+        threads = 1
+        outputFormats = ['XML', 'HTML']
+        timestampedReports = true
+        failWhenNoMutations = false
+    }
 
     afterEvaluate {
         repositories {
@@ -30,8 +55,8 @@ subprojects {
             doFirst {
                 options.compilerArgs = [
                     '--module-path', classpath.asPath,
-                    '--add-modules', 'junit',
-                    '--add-reads', "$moduleName=junit",
+                    '--add-modules', 'org.junit.jupiter.api',
+                    '--add-reads', "$moduleName=org.junit.jupiter.api",
                     '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
                 ]
                 classpath = files()
@@ -39,12 +64,13 @@ subprojects {
         }
 
         test {
+            useJUnitPlatform()
             inputs.property("moduleName", moduleName)
             doFirst {
                 jvmArgs = [
                     '--module-path', classpath.asPath,
                     '--add-modules', 'ALL-MODULE-PATH',
-                    '--add-reads', "$moduleName=junit",
+                    '--add-reads', "$moduleName=org.junit.jupiter.api",
                     '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir).asPath,
                 ]
                 classpath = files()
