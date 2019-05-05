@@ -44,3 +44,4 @@ for touched_module in ${touched_modules[@]}; do
 
 done
 
+../generate-html.sh
