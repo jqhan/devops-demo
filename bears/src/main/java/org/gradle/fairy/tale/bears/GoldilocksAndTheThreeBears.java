@@ -6,7 +6,7 @@ import org.gradle.fairy.tale.Tale;
 import org.gradle.fairy.tale.formula.FairyTale;
 
 /**
- * The classic tale of "Goldilocks and the Three Bears"
+ * The classic tale of "Goldilocks and the Three Bears."
  */
 public class GoldilocksAndTheThreeBears implements Tale {
     private Tale getFairyTale() {
@@ -61,6 +61,7 @@ public class GoldilocksAndTheThreeBears implements Tale {
     }
 
     // SpotBugs NP_BOOLEAN_RETURN_NULL violation
+    // Spotbugs will NOT like this method
     public Boolean returnNull() {
         return null;
     }
