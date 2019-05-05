@@ -48,5 +48,3 @@ public class ThreeLittlePigs implements Tale {
         return x + y;
     }
 }
-
-
