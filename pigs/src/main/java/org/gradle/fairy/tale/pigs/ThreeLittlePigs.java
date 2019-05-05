@@ -42,6 +42,7 @@ public class ThreeLittlePigs implements Tale {
                     .weave();
         }
         fairyTale.tell();
+        // Useless comment
     }
 
     public int add(int x, int y) {
