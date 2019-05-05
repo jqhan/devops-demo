@@ -33,3 +33,6 @@ str=$str"
 echo $str > index.html
 aws s3 cp index.html s3://demo-reports-devops-demo/index.html --acl public-read > /dev/null
 rm index.html
+echo "--------------------------------------"
+echo "url to reports: http://demo-reports-devops-demo.s3-website-eu-west-1.amazonaws.com/"
+echo "--------------------------------------"
