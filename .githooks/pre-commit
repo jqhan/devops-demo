@@ -44,4 +44,7 @@ for touched_module in ${touched_modules[@]}; do
 
 done
 
-./generate-html.sh
+./generate-html.sh &2>/dev/null
+echo "--------------------------------------"
+echo "url to reports: http://demo-reports-devops-demo.s3-website-eu-west-1.amazonaws.com/"
+echo "--------------------------------------"
