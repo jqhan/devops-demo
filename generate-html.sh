@@ -28,7 +28,7 @@ for project in ${all_modules[@]}; do
   fi
   if [ -d "$proj/build/reports/spotbugs" ]; then
     str=$str"
-    <p><a href="$proj/spotbugs/main.xml">spotbugs</a></p>
+    <p><a href="$proj/spotbugs/main.html">spotbugs</a></p>
     "
   fi
   if [ -d "$proj/build/reports/tests" ]; then
