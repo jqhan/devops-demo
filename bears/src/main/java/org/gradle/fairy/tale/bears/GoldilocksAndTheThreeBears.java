@@ -64,6 +64,7 @@ public class GoldilocksAndTheThreeBears implements Tale {
 //    public Boolean returnNull() {
 //            int a = 5;
 //            int a = 5;
+//            int a = 5;
 //        return null;
 //    }
 }
