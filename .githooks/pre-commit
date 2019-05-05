@@ -43,7 +43,8 @@ for touched_module in ${touched_modules[@]}; do
   fi
 
 done
-
-echo "Uploading HTML reports to AWS.."
-./generate-html.sh
+if [ ! ${#touched_modules[@]} -eq 0 ]; then
+  echo "Uploading HTML reports to AWS.."
+  ./generate-html.sh
+fi
 lolcommits --capture
