@@ -61,7 +61,6 @@ public class GoldilocksAndTheThreeBears implements Tale {
     }
 
     // SpotBugs NP_BOOLEAN_RETURN_NULL violation
-    // Spotbugs will NOT like this method
     public Boolean returnNull() {
         return null;
     }
