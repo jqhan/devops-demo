@@ -1,6 +1,6 @@
 #!/bin/bash
 
-all_modules=($(./gradlew projects | grep -oh "':.*" | tr -d \'\:))
+all_modules=($(./gradlew projects | grep -oh "':.*" | tr -d \'\:'\r'))
 touched_added_files=($(git diff --name-only --cached))
 touched_modules=()
 
