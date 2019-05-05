@@ -6,7 +6,6 @@ apply plugin: 'checkstyle'
 
 
 pmd {
-    rulePriority = 5
     ignoreFailures = true
 }
 dependencies {

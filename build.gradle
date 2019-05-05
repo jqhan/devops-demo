@@ -32,7 +32,6 @@ spotbugs {
 
 
 pmd {
-    rulePriority = 2
     ignoreFailures = true
     ruleSets = [
             /* rules

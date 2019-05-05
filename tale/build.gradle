@@ -5,7 +5,6 @@ apply plugin: 'pmd'
 apply plugin: 'checkstyle'
 
 pmd {
-    rulePriority = 2
     ignoreFailures = true
 }
 ext.moduleName = 'org.gradle.fairy.tale'

@@ -7,7 +7,6 @@ apply plugin: 'checkstyle'
 
 
 pmd {
-    rulePriority = 2
     ignoreFailures = true
 }
 import java.util.regex.Matcher;
