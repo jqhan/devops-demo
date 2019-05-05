@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# stash any unstaged changes
-git stash -q --keep-index
-
 all_modules=($(./gradlew projects | grep -oh "':.*" | tr -d \'\:))
 touched_added_files=($(git diff --name-only --cached))
 touched_modules=()
@@ -19,6 +16,13 @@ done
 # Remove duplicates
 touched_modules=($(for v in "${touched_modules[@]}"; do echo "$v"; done | sort | uniq | xargs))
 
+if [[ -z "${PRECOMMITALLTESTS}" ]]; then
+  # environment var is not set
+  PERFORM_ALL_TESTS=false
+else
+  PERFORM_ALL_TESTS="${PRECOMMITALLTESTS}"
+fi
+
 for touched_module in ${touched_modules[@]}; do
   echo "--------------------------------------"
   echo "Running SpotBugs on module: ${touched_module}"
@@ -26,13 +30,17 @@ for touched_module in ${touched_modules[@]}; do
   echo "--------------------------------------"
   echo "Running PMD on module: ${touched_module}"
   ./gradlew ${touched_module}:pmdMain
+  echo "--------------------------------------"
+  echo "Running checkstyle on module: ${touched_module}"
+  ./gradlew ${touched_module}:checkstyleMain
+  if [ ${PERFORM_ALL_TESTS} == true ]; then
+    echo "--------------------------------------"
+    echo "Running unit tests on module: ${touched_module}"
+    ./gradlew ${touched_module}:test
+    echo "--------------------------------------"
+    echo "Running mutation tests on module: ${touched_module}"
+    ./gradlew ${touched_module}:pitest
+  fi
+
 done
 
-# store the last exit code in a variable
-RESULT=$?
-
-# unstash the unstashed changes
-git stash pop -q
-
-# return the './gradlew test' exit code
-exit $RESULT
