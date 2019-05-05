@@ -7,7 +7,7 @@ find .git/hooks -type l -exec rm {} \; && find .githooks -type f -exec ln -sf ..
 # Set this variable to true if you also want to run 
 # unit & mutation tests on pre-commit hook.
 # Default is only static analysis.
-PERFORM_ALL_TESTS=true
+PERFORM_ALL_TESTS=false
 
 # Notice: only bash and zsh supported.
 # If you have another shell,
