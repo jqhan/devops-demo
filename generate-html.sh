@@ -20,10 +20,10 @@ for project in ${all_modules[@]}; do
   <p><a href="$proj/spotbugs/main.xml">spotbugs</a></p>
   <p><a href="$proj/tests/test/index.html">unit tests</a></p
   "
-  for filename in `find ./$proj/build/reports/pitest/ -maxdepth 1 -mindepth 1 -type d`; do
+  (for filename in `find ./$proj/build/reports/pitest/ -maxdepth 1 -mindepth 1 -type d`; do
       IFS='/' read -r -a array <<< "$filename"
       str=$str"<p><a href="$proj/pitest/${array[-1]}/index.html">pitest ${array[-1]} </a></p>"
-  done
+  done) &>/dev/null
   str=$str
 done
 str=$str"
