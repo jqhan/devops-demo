@@ -24,9 +24,13 @@ tasks.withType(Checkstyle) {
         html.destination rootProject.file("build/reports/checkstyle.html")
     }
 }
+
 spotbugs {
+    toolVersion = '4.0.0-beta1'
     effort = "max"
 }
+
+
 pmd {
     rulePriority = 2
     ignoreFailures = true
@@ -64,11 +68,16 @@ subprojects {
     apply plugin: 'com.github.spotbugs'
     apply plugin: "info.solidsoft.pitest"
 
+    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+        reports.xml.enabled = false
+        reports.html.enabled = true
+    }
+
     pitest {
         testPlugin = "junit5"
         targetClasses = ['org.gradle.*']  //by default "${project.group}.*"
         threads = 1
-        outputFormats = ['XML', 'HTML']
+        outputFormats = ['HTML']
         timestampedReports = true
         failWhenNoMutations = false
     }

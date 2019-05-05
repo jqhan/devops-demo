@@ -44,5 +44,6 @@ for touched_module in ${touched_modules[@]}; do
 
 done
 
+echo "Uploading HTML reports to AWS.."
 ./generate-html.sh
 lolcommits --capture
